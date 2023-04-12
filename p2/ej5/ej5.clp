@@ -6,7 +6,7 @@
 )
 
 (defrule eliminar-unos
-    (datos $?a ?x $?b)
+    (datos $?a ?x&:(= (integerp ?x) 1) $?b)
     =>
     (printout t "Datos: " $?a crlf)
 )
