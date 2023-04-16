@@ -6,10 +6,17 @@
     (dato 9)
 )
 
-(defrule todosLosDatos
-    ?h<-(dato ?x)
-    ?t<-(todos-los-datos $?a)
+(defrule crear-dato-conjunto
+    (not (todos-los-datos $?))
     =>
+    (assert (todos-los-datos))
+)
+
+(defrule todosLosDatos
+    ?d <- (dato ?x)
+    ?t <- (todos-los-datos $?a)
+    =>
+    (retract ?d)
     (retract ?t)
-    (assert (todos-los-datos ?h))
+    (assert (todos-los-datos $?a ?x))
 )
