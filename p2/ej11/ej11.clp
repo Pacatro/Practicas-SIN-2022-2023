@@ -14,12 +14,10 @@
 )
 
 (defrule todosLosDatos
-    ?h <- (dato ?x)
+    (dato ?x)
+    (not (todos-los-datos $? ?x $?))
     ?t <- (todos-los-datos $?a)
-    ?d <- (dato ?y&~1 &~5 &~verde)
     =>
-    (retract ?d)
     (retract ?t)
-    (retract ?h)
     (assert (todos-los-datos $?a ?x))
 )
