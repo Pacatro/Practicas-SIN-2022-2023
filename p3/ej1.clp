@@ -3,16 +3,13 @@
 ;índice del primer y último elemento a extraer y como tercer parámetro la
 ;cadena o multicampo sobre los que realizar la extracción.
 
-(deffunction extract(?begin ?end $?slot)
-    (if (not (stringp $?slot)) then
-        (loop-for-count (?begin ?end) 
-            do
-            (bind ?actual (nth$ ?begin $?slot))
-            (printout t "Elemento: " ?actual crlf)
-        )
+(deffunction extract(?begin ?end ?slot)
 
-    else
-        (bind ?actual (sub-string ?begin ?end $?slot))
+    (bind $?multi (explode$ ?slot))
+
+    (loop-for-count (?begin ?end) 
+        do
+        (bind ?actual (nth$ ?begin $?multi))
         (printout t "Elemento: " ?actual crlf)
     )
 )
